@@ -1,0 +1,12 @@
+# Compiled simulation executables
+cpu_sim
+decoder_sim
+forwarding_sim
+hazard_sim
+build/
+
+# Generated waveform
+cpu_top.vcd
+
+# macOS
+.DS_Store
