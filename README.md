@@ -19,6 +19,35 @@ The design explores fundamental computer architecture concepts, including instru
 
 **Verification status:** All four current test suites pass, covering decoder behavior, forwarding selection, hazard detection, and integrated CPU execution. Verification is directed rather than exhaustive.
 
+
+## CPU Architecture
+
+The processor uses a five-stage pipeline with forwarding, load-use hazard detection, and branch flushing.
+
+```mermaid
+flowchart LR
+    IF["IF<br/>Instruction Fetch"] --> IFID["IF/ID<br/>Pipeline Register"]
+    IFID --> ID["ID<br/>Instruction Decode"]
+    ID --> IDEX["ID/EX<br/>Pipeline Register"]
+    IDEX --> EX["EX<br/>Execute / ALU"]
+    EX --> EXMEM["EX/MEM<br/>Pipeline Register"]
+    EXMEM --> MEM["MEM<br/>Data Memory"]
+    MEM --> MEMWB["MEM/WB<br/>Pipeline Register"]
+    MEMWB --> WB["WB<br/>Register Write-back"]
+
+    EXMEM -. "Forwarding" .-> EX
+    MEMWB -. "Forwarding" .-> EX
+    ID -. "Hazard detection / stall" .-> IFID
+    EX -. "Taken branch / flush" .-> IFID
+
+    style IF fill:#dbeafe,stroke:#2563eb,color:#111827
+    style ID fill:#dbeafe,stroke:#2563eb,color:#111827
+    style EX fill:#dcfce7,stroke:#16a34a,color:#111827
+    style MEM fill:#fef3c7,stroke:#d97706,color:#111827
+    style WB fill:#f3e8ff,stroke:#9333ea,color:#111827
+```
+
+
 ## Features
 
 - Five-stage pipeline: Instruction Fetch (IF), Instruction Decode (ID), Execute (EX), Memory Access (MEM), and Write-Back (WB)
