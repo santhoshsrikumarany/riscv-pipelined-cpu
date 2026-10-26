@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#020611"/><stop offset="1" stop-color="#09152a"/></linearGradient>
+<filter id="g"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#35d9ff"/></marker>
+<marker id="gr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4dff9a"/></marker>
+<style>
+text{font-family:Inter,Arial,sans-serif;fill:#e6f4ff}.title{font-size:34px;font-weight:800;letter-spacing:1px}.sub{font-size:15px;letter-spacing:2px;fill:#8eb5d9}.stage{font-size:22px;font-weight:800}.desc{font-size:12px;fill:#b9d5f2}.label{font-size:15px;font-weight:700}.small{font-size:12px;fill:#bdd1e8}.paneltitle{font-size:18px;font-weight:800}.wire{fill:none;stroke:#35d9ff;stroke-width:2.5;marker-end:url(#a)}.box{fill:#071629;stroke-width:2.2;rx:11}
+</style></defs>
+<rect width="1600" height="1000" fill="url(#bg)"/>
+<g opacity=".18" stroke="#1b91b9" fill="none"><path d="M0 130H220l25 25h130M1280 130h120l25 25h175M0 940h220l20-20h130M1260 940h160l20-20h160"/><circle cx="375" cy="155" r="4" fill="#35d9ff"/><circle cx="1425" cy="920" r="4" fill="#35d9ff"/></g>
+<text x="800" y="54" text-anchor="middle" class="title" filter="url(#g)">FIVE-STAGE PIPELINED RISC-V CPU</text>
+<text x="800" y="84" text-anchor="middle" class="sub">DATA FORWARDING  •  LOAD-USE HAZARD DETECTION  •  BRANCH FLUSHING</text>
+<path d="M70 105H1530" stroke="#203a5c"/>
+<!-- stage headers -->
+<g filter="url(#g)">
+<path d="M35 125H290l20 27-20 27H35Z" fill="#071c3b" stroke="#3c9dff" stroke-width="2.5"/>
+<path d="M335 125H590l20 27-20 27H335l20-27Z" fill="#06291f" stroke="#39f5a0" stroke-width="2.5"/>
+<path d="M635 125H890l20 27-20 27H635l20-27Z" fill="#2a1a08" stroke="#ffae35" stroke-width="2.5"/>
+<path d="M935 125H1190l20 27-20 27H935l20-27Z" fill="#20113b" stroke="#c18aff" stroke-width="2.5"/>
+<path d="M1235 125H1490l20 27-20 27H1235l20-27Z" fill="#062734" stroke="#28e8ff" stroke-width="2.5"/>
+</g>
+<g text-anchor="middle"><text x="170" y="151" class="stage">IF</text><text x="170" y="169" class="desc">INSTRUCTION FETCH</text><text x="470" y="151" class="stage">ID</text><text x="470" y="169" class="desc">INSTRUCTION DECODE</text><text x="770" y="151" class="stage">EX</text><text x="770" y="169" class="desc">EXECUTE</text><text x="1070" y="151" class="stage">MEM</text><text x="1070" y="169" class="desc">MEMORY ACCESS</text><text x="1370" y="151" class="stage">WB</text><text x="1370" y="169" class="desc">WRITE BACK</text></g>
+<!-- stage backgrounds -->
+<g fill="#061225" fill-opacity=".8" stroke-width="1.5"><rect x="25" y="195" width="280" height="300" rx="14" stroke="#1d70c9"/><rect x="325" y="195" width="280" height="300" rx="14" stroke="#159b69"/><rect x="625" y="195" width="280" height="300" rx="14" stroke="#b77919"/><rect x="925" y="195" width="280" height="300" rx="14" stroke="#8737b5"/><rect x="1225" y="195" width="350" height="300" rx="14" stroke="#078ba8"/></g>
+<!-- IF -->
+<rect x="45" y="250" width="62" height="58" class="box" stroke="#55a8ff" filter="url(#g)"/><text x="76" y="285" text-anchor="middle" class="label">PC</text>
+<rect x="135" y="235" width="130" height="88" class="box" stroke="#29c9ff" filter="url(#g)"/><text x="200" y="271" text-anchor="middle" class="label">Instruction</text><text x="200" y="291" text-anchor="middle" class="label">Memory</text>
+<path d="M107 279H133M265 279H283" class="wire"/>
+<rect x="283" y="235" width="35" height="185" rx="8" fill="#09213e" stroke="#55a8ff" stroke-width="2.4"/><text x="301" y="290" text-anchor="middle" font-size="11" font-weight="800" transform="rotate(90 301 290)">IF/ID PIPELINE REG</text>
+<!-- ID -->
+<path d="M318 279H342" class="wire"/>
+<rect x="342" y="235" width="118" height="76" class="box" stroke="#39f5a0" filter="url(#g)"/><text x="401" y="268" text-anchor="middle" class="label">Register File</text><text x="401" y="289" text-anchor="middle" class="small">rs1 / rs2</text>
+<rect x="475" y="235" width="112" height="76" class="box" stroke="#ff6caa"/><text x="531" y="266" text-anchor="middle" class="label">Instruction</text><text x="531" y="287" text-anchor="middle" class="label">Decoder</text>
+<text x="350" y="375" class="small">Decode opcode / funct</text><text x="350" y="397" class="small">Read source registers</text><text x="350" y="419" class="small">Generate control signals</text>
+<rect x="590" y="235" width="35" height="185" rx="8" fill="#09213e" stroke="#55a8ff" stroke-width="2.4"/><text x="608" y="290" text-anchor="middle" font-size="11" font-weight="800" transform="rotate(90 608 290)">ID/EX PIPELINE REG</text>
+<path d="M587 279H590" class="wire"/>
+<!-- EX -->
+<path d="M625 279H650" class="wire"/><path d="M650 252L670 252L690 290L670 328L650 328Z" fill="#101d30" stroke="#ffb83f" stroke-width="2.3"/><text x="670" y="350" text-anchor="middle" class="small">MUX</text>
+<path d="M690 290H710" class="wire"/>
+<path d="M710 240L830 240L855 267V318L830 345H710Z" fill="#071629" stroke="#3b9cff" stroke-width="2.5" filter="url(#g)"/><text x="780" y="286" text-anchor="middle" font-size="27" font-weight="800">ALU</text><text x="780" y="309" text-anchor="middle" class="small">Arithmetic / Logic</text>
+<text x="650" y="383" class="small">ALU operations</text><text x="650" y="405" class="small">LW/SW address calculation</text><text x="650" y="427" class="small">BEQ equality comparison</text>
+<rect x="890" y="235" width="35" height="185" rx="8" fill="#09213e" stroke="#55a8ff" stroke-width="2.4"/><text x="908" y="290" text-anchor="middle" font-size="11" font-weight="800" transform="rotate(90 908 290)">EX/MEM PIPELINE REG</text><path d="M855 279H890" class="wire"/>
+<!-- MEM -->
+<path d="M925 279H950" class="wire"/><rect x="950" y="250" width="225" height="90" class="box" stroke="#c18aff" filter="url(#g)"/><text x="1062" y="285" text-anchor="middle" class="label">Data Memory</text><text x="1062" y="307" text-anchor="middle" class="small">LW read • SW write</text><text x="950" y="383" class="small">Address from EX stage</text><text x="950" y="405" class="small">Load data / store data</text>
+<rect x="1190" y="235" width="35" height="185" rx="8" fill="#09213e" stroke="#55a8ff" stroke-width="2.4"/><text x="1208" y="290" text-anchor="middle" font-size="11" font-weight="800" transform="rotate(90 1208 290)">MEM/WB PIPELINE REG</text><path d="M1175 279H1190" class="wire"/>
+<!-- WB -->
+<path d="M1250 245L1310 279V313L1250 347Z" fill="#082537" stroke="#28e8ff" stroke-width="2.5" filter="url(#g)"/><text x="1278" y="286" text-anchor="middle" class="small">WB</text><text x="1278" y="303" text-anchor="middle" class="small">MUX</text>
+<rect x="1350" y="250" width="195" height="90" class="box" stroke="#28e8ff" filter="url(#g)"/><text x="1447" y="284" text-anchor="middle" class="label">Register File</text><text x="1447" y="307" text-anchor="middle" class="small">Write destination rd</text><path d="M1225 279H1248M1310 296H1348" class="wire"/>
+<path d="M1447 340V450H401V313" fill="none" stroke="#55a8ff" stroke-width="2" marker-end="url(#a)" opacity=".8"/><text x="1250" y="444" class="small">Write-back result returns to ID</text>
+<!-- hazard and forwarding logic -->
+<rect x="690" y="460" width="250" height="55" rx="11" fill="#09291e" stroke="#4dff9a" stroke-width="2.5" filter="url(#g)"/><text x="815" y="483" text-anchor="middle" class="label" fill="#4dff9a">FORWARDING UNIT</text><text x="815" y="501" text-anchor="middle" class="small">EX/MEM priority • ignore x0</text>
+<path d="M815 460V350" fill="none" stroke="#4dff9a" stroke-width="2.5" marker-end="url(#gr)"/><path d="M940 485H965V360H865V346" fill="none" stroke="#4dff9a" stroke-width="2.5" marker-end="url(#gr)"/><text x="955" y="473" class="small" fill="#4dff9a">Forwarding paths</text>
+<rect x="360" y="540" width="300" height="65" rx="11" fill="#19102e" stroke="#b58aff" stroke-width="2.5" filter="url(#g)"/><text x="510" y="568" text-anchor="middle" class="label">HAZARD DETECTION UNIT</text><text x="510" y="588" text-anchor="middle" class="small">Load-use dependency check</text><path d="M608 420V520H510V538" fill="none" stroke="#b58aff" stroke-width="2.5"/>
+<path d="M360 572H310V420H301" fill="none" stroke="#b58aff" stroke-width="2.5"/><text x="45" y="535" class="small" fill="#b58aff">STALL</text><text x="45" y="554" class="small">Hold PC + IF/ID;</text><text x="45" y="573" class="small">bubble into ID/EX</text>
+<rect x="760" y="540" width="210" height="65" rx="11" fill="#2a0b1b" stroke="#ff6caa" stroke-width="2.5" filter="url(#g)"/><text x="865" y="568" text-anchor="middle" class="label">BRANCH CONTROL</text><text x="865" y="588" text-anchor="middle" class="small">Taken BEQ redirects PC</text><path d="M780 345V520H865V538" fill="none" stroke="#ff6caa" stroke-width="2.5"/>
+<path d="M760 572H700V630H301V420" fill="none" stroke="#ff6caa" stroke-width="2.5" stroke-dasharray="8 6"/><text x="315" y="649" class="small" fill="#ff6caa">FLUSH wrong-path instructions on taken branch</text>
+<!-- bottom info cards -->
+<rect x="30" y="680" width="350" height="245" rx="15" fill="#061225" stroke="#3c9dff" stroke-width="1.8"/><rect x="400" y="680" width="440" height="245" rx="15" fill="#061225" stroke="#39f5a0" stroke-width="1.8"/><rect x="860" y="680" width="300" height="245" rx="15" fill="#061225" stroke="#c18aff" stroke-width="1.8"/><rect x="1180" y="680" width="390" height="245" rx="15" fill="#061225" stroke="#28e8ff" stroke-width="1.8"/>
+<text x="55" y="714" class="paneltitle" fill="#3c9dff">PIPELINE STAGES</text>
+<g class="small"><text x="55" y="750" fill="#3c9dff">IF</text><text x="105" y="750">Fetch instruction</text><text x="55" y="786" fill="#39f5a0">ID</text><text x="105" y="786">Decode + read registers</text><text x="55" y="822" fill="#ffae35">EX</text><text x="105" y="822">ALU + branch comparison</text><text x="55" y="858" fill="#c18aff">MEM</text><text x="105" y="858">Load / store data</text><text x="55" y="894" fill="#28e8ff">WB</text><text x="105" y="894">Write result to rd</text></g>
+<text x="425" y="714" class="paneltitle" fill="#39f5a0">HAZARD HANDLING</text><text x="425" y="751" class="label" fill="#4dff9a">Forwarding</text><text x="565" y="751" class="small">Prefer EX/MEM over MEM/WB;</text><text x="565" y="770" class="small">never forward a write to x0.</text><text x="425" y="803" class="label" fill="#b58aff">Load-use stall</text><text x="565" y="803" class="small">Hold PC and IF/ID; zero ID/EX</text><text x="565" y="822" class="small">controls to insert a bubble.</text><text x="425" y="855" class="label" fill="#ff6caa">Branch flush</text><text x="565" y="855" class="small">Clear wrong-path work when</text><text x="565" y="874" class="small">a branch is taken.</text><text x="425" y="907" font-size="10" fill="#8eb5d9">Conceptual layout — confirm wiring against rtl/cpu.v.</text>
+<text x="885" y="714" class="paneltitle" fill="#c18aff">SUPPORTED INSTRUCTIONS</text><g class="small"><text x="895" y="751">• ADD</text><text x="895" y="780">• SUB</text><text x="895" y="809">• AND</text><text x="895" y="838">• OR</text><text x="1020" y="751">• ADDI</text><text x="1020" y="780">• LW</text><text x="1020" y="809">• SW</text><text x="1020" y="838">• BEQ</text></g><text x="885" y="890" class="small">RV32I subset</text><text x="885" y="909" class="small">Directed simulation tests</text>
+<text x="1205" y="714" class="paneltitle" fill="#28e8ff">LEGEND</text><g class="small"><rect x="1208" y="735" width="28" height="17" rx="4" fill="#081b33" stroke="#55a8ff" stroke-width="2"/><text x="1248" y="749">Pipeline register</text><rect x="1208" y="765" width="28" height="17" rx="4" fill="#071629" stroke="#28e8ff" stroke-width="2"/><text x="1248" y="779">Functional unit</text><rect x="1208" y="795" width="28" height="17" rx="4" fill="#2a0b1b" stroke="#ff6caa" stroke-width="2"/><text x="1248" y="809">Control / branch unit</text><path d="M1208 835H1236" stroke="#4dff9a" stroke-width="3" marker-end="url(#gr)"/><text x="1248" y="839">Forwarding path</text><path d="M1208 865H1236" stroke="#b58aff" stroke-width="3"/><text x="1248" y="869">Hazard control</text><path d="M1208 895H1236" stroke="#ff6caa" stroke-width="3" stroke-dasharray="6 5"/><text x="1248" y="899">Flush / branch control</text></g>
+<path d="M80 953H1520" stroke="#203a5c"/><text x="800" y="978" text-anchor="middle" class="sub">SMALL ISA. CLEAN PIPELINE. EXPLICIT HAZARD CONTROL.</text>
+</svg>
